@@ -1,5 +1,20 @@
 package sample;
 
+import com.alibaba.fastjson.JSON;
+import entity.User;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.geometry.HPos;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -30,6 +45,9 @@ public class Controller {
     private Label labelOut;
 
     @FXML
+    private GridPane usersGrid = new GridPane();
+
+    @FXML
     private TextField requestField;
 
     @FXML
@@ -50,6 +68,42 @@ public class Controller {
        String requestListWithJsonObject = selectListWithJsonObject(connectService(request_link));
         List<User> users = getUsersFromJsonList(requestListWithJsonObject);
 
+        cleanGrid(usersGrid);
+        setGrid(users, usersGrid);
+    }
+
+    private void setGrid(List<User> users, GridPane gridPane) {
+        int i = 0;
+        for (User u : users) {
+            Button uSelectButton = new Button(u.getName().getFirst() + " " + u.getName().getLast());
+            uSelectButton.setId(gridPane.getId() + i);
+            GridPane.setHalignment(uSelectButton, HPos.CENTER);
+            gridPane.add(uSelectButton, 1, i);
+
+            String urlImg = u.getPicture().getThumbnail();
+            final ImageView imv = new ImageView();
+            Image uImage = new Image(urlImg, 100, 45, false, false);
+            imv.setImage(uImage);
+
+            final HBox pictureRegion = new HBox();
+
+            pictureRegion.getChildren().add(imv);
+            gridPane.add(pictureRegion, 0, i);
+
+            i++;
+        }
+    }
+
+    private void cleanGrid(GridPane gridPane) {
+        List<Node> gridNodeList = gridPane.getChildren();
+        for (Node node : gridNodeList) {
+            gridPane.clearConstraints(node);
+        }
+        gridPane.setGridLinesVisible(false);
+        gridPane.getColumnConstraints().clear();
+        gridPane.getRowConstraints().clear();
+        gridPane.getChildren().clear();
+        gridPane.setGridLinesVisible(true);
     }
 
     private List<User> getUsersFromJsonList(String requestListWithJsonObject) {
@@ -95,7 +149,7 @@ public class Controller {
     }
 
     private int count = 0;
-    final String REQUEST_LINK = "https://randomuser.me/api/?results=2000";
+    final String REQUEST_LINK = "https://randomuser.me/api/?results=20";
     final String START_PARSE_SYMBOL = "[";
     final String END_PARSE_SYMBOL = "]";
 }
