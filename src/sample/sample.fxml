@@ -42,12 +42,12 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                             </rowConstraints>
                         </GridPane>
-                        <TextField fx:id="requestField" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="869.0" promptText="request" />
+                        <TextField fx:id="requestField" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="352.0" promptText="request" />
                     </children>
                 </AnchorPane>
             </content>
         </ScrollPane>
-        <Button fx:id="getUsers" layoutX="22.0" layoutY="23.0" mnemonicParsing="false" onAction="#getUsersActions" text="getUsers" />
-        <Label layoutX="418.0" layoutY="10.0" prefHeight="24.0" prefWidth="55.0" text="JAVAFX" textOverrun="WORD_ELLIPSIS" />
+        <Button fx:id="getUsers" layoutX="94.0" layoutY="30.0" mnemonicParsing="false" onAction="#getUsersActions" text="getUsers" />
+        <Label layoutX="13.0" layoutY="10.0" prefHeight="24.0" prefWidth="55.0" text="JAVAFX" textOverrun="WORD_ELLIPSIS" />
     </children>
 </AnchorPane>

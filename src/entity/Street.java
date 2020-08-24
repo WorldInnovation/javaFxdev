@@ -1,13 +1,13 @@
 package entity;
 
 public class Street {
-    private float number;
+    private String number;
     private String name;
 
 
     // Getter Methods
 
-    public float getNumber() {
+    public String getNumber() {
         return number;
     }
 
@@ -17,7 +17,7 @@ public class Street {
 
     // Setter Methods
 
-    public void setNumber( float number ) {
+    public void setNumber( String number ) {
         this.number = number;
     }
 
