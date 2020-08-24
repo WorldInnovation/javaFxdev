@@ -6,14 +6,20 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.awt.*;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("javaFX");
-        primaryStage.setScene(new Scene(root, 900, 555));
+        primaryStage.setTitle("LASER FX");
+        Dimension sSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int vSize = sSize.height / 2;
+        int hSize = sSize.width / 2;
+        primaryStage.setScene(new Scene(root, hSize, vSize));
         primaryStage.show();
+
     }
 
 
